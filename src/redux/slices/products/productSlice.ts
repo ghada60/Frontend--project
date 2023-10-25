@@ -6,8 +6,8 @@ export type Product = {
   image: string
   description: string
   categories: number[]
-  variants: string[]
-  sizes: string[]
+  // variants: string[]
+  // sizes: string[]
 }
 
 export type ProductState = {

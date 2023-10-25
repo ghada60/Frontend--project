@@ -10,9 +10,9 @@ const initialProductState: Product = {
   name: '',
   image: '',
   description: '',
-  categories: [],
-  variants: [],
-  sizes: []
+  categories: []
+  // variants: [],
+  // sizes: []
 }
 
 export function NewProductWrapper() {

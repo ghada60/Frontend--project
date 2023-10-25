@@ -19,7 +19,7 @@ export function ProductsManager() {
     handleGetProducts()
   }, [])
 
-   /**
+  /**
    * If you want to keep things simple you can follow this approach on updating
    * redux state when using async requests instead of using createAsyncThunk
    */
@@ -35,7 +35,7 @@ export function ProductsManager() {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 w-full">
-      <NewProductWrapper />
+      {/* <NewProductWrapper /> */}
       {products.isLoading && <h3> Loading products...</h3>}
       <div className="card grid gap-4">
         <ul>
