@@ -1,25 +1,54 @@
-// import { ProductsManager } from './components/ProductsManager'
 import './App.css'
 import Footer from './components/Footer'
-import { Routes, Route } from 'react-router-dom'
+import { Routes } from 'react-router-dom'
 import Home from './components/Home'
-import { ProductsManager } from './components/ProductsManager'
-import StickyNavbar from './components/StickyNavbar'
+import Navbar from './components/Navbar'
 import Admin from './components/Admin'
+import Cart from './components/Cart'
+import ProductsDetails from './components/ProductsDetails'
+// import Category from './components/Category'
+import LogIn from './components/LogIn'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { EditProduct } from './components/EditProduct'
+// import { AuthService } from './types/authService'
 
 function App() {
   return (
     <div>
-      <StickyNavbar />
+      <Navbar />
+
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/products" element={<ProductsManager />} />
+        {/* <Route path="/Category" element={<Category />} /> */}
+        <Route path="/products/:id" element={<ProductsDetails />} />
         <Route path="/Admin" element={<Admin />} />
+        <Route path="/LogIn" element={<LogIn />} />
+        <Route path="/Cart" element={<Cart />} />
+        <Route path="/products/edit/:productId" element={<EditProduct />} />
       </Routes>
-      {/* <ProductsManager /> */}
+
       <Footer />
     </div>
   )
 }
 
 export default App
+// const PrivateRoute: React.FC<{ component: React.FC; path: string }> = ({ component, path }) => {
+//   return AuthService.isAuthenticated() ? (
+//     <Route path={path} component={component} />
+//   ) : (
+//     <Redirect to="/login" />
+//   );
+// };
+
+// const App: React.FC = () => {
+//   return (
+//     <Router>
+//       <Switch>
+//         <Route path="/login" component={Login} />
+//         <PrivateRoute path="/protected" component={() => <div>Protected Route</div>} />
+//         <Redirect to="/login" />
+//       </Switch>
+//     </Router>
+//   );
+// };

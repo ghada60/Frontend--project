@@ -10,6 +10,7 @@ const initialProductState: Product = {
   name: '',
   image: '',
   description: '',
+  Price: 0,
   categories: []
   // variants: [],
   // sizes: []

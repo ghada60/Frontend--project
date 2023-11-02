@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-
+import { Link } from 'react-router-dom'
 import {
   productsRequest,
   productsSuccess,
@@ -35,7 +35,7 @@ export function ProductsManager() {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 w-full">
-      {/* <NewProductWrapper /> */}
+      <NewProductWrapper />
       {products.isLoading && <h3> Loading products...</h3>}
       <div className="card grid gap-4">
         <ul>
@@ -48,6 +48,9 @@ export function ProductsManager() {
                 onClick={() => dispatch(removeProduct({ productId: product.id }))}>
                 X
               </button>
+              <Link to={'/products/edit/${product.id}'} className=" text-blue-400 text-xs">
+                Edit
+              </Link>
             </li>
           ))}
         </ul>

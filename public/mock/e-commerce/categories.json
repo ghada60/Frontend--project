@@ -1,5 +1,9 @@
 [
   {
+    "id": 0,
+    "name": "All categories"
+  },
+  {
     "id": 1,
     "name": "Design"
   },
@@ -7,7 +11,7 @@
     "id": 2,
     "name": "Development"
   },
-  
+
   {
     "id": 3,
     "name": "Management"

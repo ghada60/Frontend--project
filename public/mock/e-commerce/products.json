@@ -4,6 +4,7 @@
     "name": "Build front end web application",
     "image": "https://cdn.shortpixel.ai/spai/ret_img/wpastra.com/wp-content/uploads/2022/05/create-website-chapter-1.webp",
     "description": "High-performance laptop for all your needs.",
+    "Price": 200,
     "categories": [2]
   },
   {
@@ -11,6 +12,7 @@
     "name": "Design a simple web page",
     "image": "https://cdn.shortpixel.ai/spai/ret_img/wpastra.com/wp-content/uploads/2022/05/chapter-3.webp",
     "description": "Latest smartphone with advanced features.",
+    "Price": 200,
     "categories": [1]
   },
   {
@@ -18,6 +20,7 @@
     "name": "Manage a web application",
     "image": "https://cdn.shortpixel.ai/spai/ret_img/wpastra.com/wp-content/uploads/2022/05/create-website-chapter-2.webp",
     "description": "Compact and powerful tablet for work and entertainment.",
+    "Price": 200 ,
     "categories": [3]
   },
   {
@@ -25,6 +28,7 @@
     "name": "Build back end part of web application",
     "image": "https://cdn.shortpixel.ai/spai/ret_img/wpastra.com/wp-content/uploads/2022/05/create-website-chapter-1.webp",
     "description": "High-performance laptop for all your needs.",
+    "Price": 200 ,
     "categories": [2]
   },
   {
@@ -32,6 +36,7 @@
     "name": "Design an e-commerce web application",
     "image": "https://cdn.shortpixel.ai/spai/ret_img/wpastra.com/wp-content/uploads/2022/05/chapter-3.webp",
     "description": "Latest smartphone with advanced features.",
+    "Price": 200 ,
     "categories": [1]
   }
 ]
