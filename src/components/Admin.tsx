@@ -1,16 +1,23 @@
-'use client'
+import { Link } from 'react-router-dom'
+import { ProductForm } from './ProductForm'
 
-// import { EditProduct } from './EditProduct'
-// import { ProductForm } from '../components/ProductForm'
-
-import { ProductsManager } from './ProductsManager'
-
-export default function DefaultForm() {
+export default function Admin() {
   return (
     <div>
-      <ProductsManager />
-      {/* <EditProduct />
-      <ProductForm /> */}
+      <div className="flex">
+        <Link to="/users">
+          <button>users</button>
+        </Link>
+
+        <Link to="/orders">
+          <button>orders</button>
+        </Link>
+
+        <Link to="/Admincategoris">
+          <button>categories</button>
+        </Link>
+      </div>
+      <ProductForm />
     </div>
   )
 }

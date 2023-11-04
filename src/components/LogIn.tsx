@@ -1,18 +1,18 @@
 import React from 'react'
 import { TEInput, TERipple } from 'tw-elements-react'
 
-export default function ExampleV3(): JSX.Element {
+export default function LogIn(): JSX.Element {
   return (
     <section className="h-screen">
       <div className="container h-full px-6 py-24">
         <div className="g-6 flex h-full flex-wrap items-center justify-center lg:justify-between">
           {/* <!-- Left column container with background--> */}
           <div className="mb-12 md:mb-0 md:w-8/12 lg:w-6/12">
-            {/* <img
+            <img
               src="https://static.vecteezy.com/system/resources/previews/005/151/164/original/programer-learning-programming-languages-by-computer-laptop-on-website-and-tutorial-channel-free-vector.jpg"
               className="w-full"
               alt="Phone image"
-            /> */}
+            />
           </div>
 
           {/* <!-- Right column container with form --> */}
@@ -67,40 +67,3 @@ export default function ExampleV3(): JSX.Element {
     </section>
   )
 }
-
-// import React, { useState } from 'react'
-// // import { AuthService } from '../types/authService'
-
-// const Login: React.FC = () => {
-//   const [username, setUsername] = useState('')
-//   const [password, setPassword] = useState('')
-
-//   const handleLogin = async () => {
-//     try {
-//       // await AuthService.login(username, password)
-//       // Redirect to a different page upon successful login
-//     } catch (error) {
-//       // Handle login error
-//     }
-//   }
-
-//   return (
-//     <div>
-//       <input
-//         type="text"
-//         placeholder="Username"
-//         value={username}
-//         onChange={(e) => setUsername(e.target.value)}
-//       />
-//       <input
-//         type="password"
-//         placeholder="Password"
-//         value={password}
-//         onChange={(e) => setPassword(e.target.value)}
-//       />
-//       <button onClick={handleLogin}>Login</button>
-//     </div>
-//   )
-// }
-
-// export default Login

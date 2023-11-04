@@ -118,13 +118,26 @@ export const userSlice = createSlice({
       // let's append the new product to the beginning of the array
       state.items = [action.payload.product, ...state.items]
     },
+    editProduct: (state, action: { payload: { editedProduct: Product } }) => {
+      const editedProduct = action.payload.editedProduct
+
+      state.items = state.items.map((product) =>
+        product.id === editedProduct.id ? editedProduct : product
+      )
+    },
     removeProduct: (state, action: { payload: { productId: number } }) => {
       const filteredItems = state.items.filter((product) => product.id !== action.payload.productId)
       state.items = filteredItems
     }
   }
 })
-export const { removeProduct, addProduct, productsRequest, productsSuccess, updateProduct } =
-  userSlice.actions
+export const {
+  removeProduct,
+  addProduct,
+  productsRequest,
+  productsSuccess,
+  updateProduct,
+  editProduct
+} = userSlice.actions
 
 export default userSlice.reducer

@@ -9,7 +9,7 @@ import ProductsDetails from './components/ProductsDetails'
 // import Category from './components/Category'
 import LogIn from './components/LogIn'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
-import { EditProduct } from './components/EditProduct'
+
 // import { AuthService } from './types/authService'
 
 function App() {
@@ -24,7 +24,6 @@ function App() {
         <Route path="/Admin" element={<Admin />} />
         <Route path="/LogIn" element={<LogIn />} />
         <Route path="/Cart" element={<Cart />} />
-        <Route path="/products/edit/:productId" element={<EditProduct />} />
       </Routes>
 
       <Footer />
