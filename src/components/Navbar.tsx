@@ -1,6 +1,6 @@
 import React from 'react'
-import LogIn from './LogIn'
-import { Navbar, MobileNav, Typography, IconButton, Button } from '@material-tailwind/react'
+
+import { Navbar, MobileNav, Typography, IconButton } from '@material-tailwind/react'
 import { Link } from 'react-router-dom'
 export default function StickyNavbar() {
   const [openNav, setOpenNav] = React.useState(false)

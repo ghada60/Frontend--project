@@ -7,7 +7,7 @@ import Admin from './components/Admin'
 import Cart from './components/Cart'
 import ProductsDetails from './components/ProductsDetails'
 // import Category from './components/Category'
-import LogIn from './components/LogIn'
+import { Login } from './components/LogIn'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 // import { AuthService } from './types/authService'
@@ -22,7 +22,7 @@ function App() {
         {/* <Route path="/Category" element={<Category />} /> */}
         <Route path="/products/:id" element={<ProductsDetails />} />
         <Route path="/Admin" element={<Admin />} />
-        <Route path="/LogIn" element={<LogIn />} />
+        <Route path="/Login" element={<Login />} />
         <Route path="/Cart" element={<Cart />} />
       </Routes>
 
