@@ -1,4 +1,3 @@
-// import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 // import { User } from '../../types/User'
 // import { UserState } from '../../types/UserState'
 // import { Product } from '../slices/products/productSlice'
@@ -53,6 +52,7 @@
 // export default userReducer
 // export { userAction }
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
+import { Product } from './products/productSlice'
 
 export type User = {
   id: number
@@ -64,6 +64,7 @@ export type User = {
   profileImageUrl: string
 }
 export type UserState = {
+  cart: any
   users: User[]
   error: null | string
   isLoading: boolean
@@ -73,6 +74,7 @@ export type UserState = {
   currentUser: User | null
 }
 const initialState: UserState = {
+  cart: [],
   users: [],
   error: null,
   isLoading: false,
@@ -115,6 +117,15 @@ export const userSlice = createSlice({
       state.isLoading = false
       state.users = action.payload
     },
+    addToCart: (state, action: PayloadAction<Product>) => {
+      state.cart = [action.payload, ...state.cart]
+      console.log(state.cart, action.payload)
+    },
+    removeFromCart: (state, action: PayloadAction<number>) => {
+      state.cart = state.cart.filter((product: { id: number }) => {
+        return product.id != action.payload
+      })
+    },
     removeUser: (state, action: { payload: { userId: number } }) => {
       const filteredItems = state.users.filter((user) => user.id !== action.payload.userId)
       state.users = filteredItems
@@ -149,6 +160,8 @@ export const {
   logout,
   getError,
   Adminlogin,
+  addToCart,
+  removeFromCart,
   updateUser
 } = userSlice.actions
 export default userSlice.reducer

@@ -4,6 +4,7 @@ import React from 'react'
 import { RootState } from '../redux/store'
 import { useSelector } from 'react-redux'
 import Products from './Products'
+import { userAction } from '../redux/slices/UserSlice'
 
 export default function ProductsDetails() {
   const { id } = useParams<{ id: string }>()
@@ -11,6 +12,10 @@ export default function ProductsDetails() {
     state.products.items.find((prod) => prod.id.toString() === id)
   )
   const selectedProduct = products
+  function dispatch(arg0: any): void {
+    throw new Error('Function not implemented.')
+  }
+
   // const selectedProduct = useSelector((state: RootState) => state.products.selectedProduct)
   return (
     <div>
@@ -31,7 +36,9 @@ export default function ProductsDetails() {
                 <p className="text-gray-500 text-sm mt-2">{products?.description}</p>
                 <div className="flex items-center justify-between mt-4">
                   <span className="text-gray-900 font-bold text-lg">{products?.Price}</span>
-                  {/* <button className="bg-gray-900 text-white py-2 px-4 rounded-full font-bold hover:bg-gray-800">
+                  {/* <button
+                    onClick={() => dispatch(userAction.addToCart(products))}
+                    className="bg-gray-900 text-white py-2 px-4 rounded-full font-bold hover:bg-gray-800">
                     Add to Cart
                   </button> */}
                 </div>

@@ -1,20 +1,3 @@
-// import React from 'react'
-// import { useSelector } from 'react-redux'
-// import { RootState } from '../redux/store'
-
-// export default function Cart() {
-//   const Cart = useSelector((state: RootState) => state.products.cart)
-
-//   return (
-//     <div>
-//       {Cart.map((product) => (
-//         <div className="bg-black" key={product.id}>
-//           {product.name}
-//         </div>
-//       ))}
-//     </div>
-//   )
-// }
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { RootState } from '../redux/store'
@@ -43,8 +26,7 @@ export default function CartPage() {
               Total
             </h3>
           </div>
-          {/*product */}
-          {/*{console.log(cart)}*/}
+
           {cart.map((product) => (
             <Card_Product key={product.id + 'Card_Product'} product={product} />
           ))}
