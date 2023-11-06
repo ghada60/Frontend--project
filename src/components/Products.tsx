@@ -20,16 +20,17 @@ import { ProductsManager } from './ProductsManager'
 // import { categoryAction } from '../redux/slices/categorySlice'
 
 export default function Products() {
-  const [currentPage, setCurrentPage] = useState(1)
-  const itemsPerPage = 3
-  const totalPages = filteredItems.length / itemsPerPage
-  const indexOfLastItem = currentPage * itemsPerPage
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage
+  //Pages
+  // const [currentPage, setCurrentPage] = useState(1)
+  // const itemsPerPage = 3
+  // const totalPages = filteredItems.length / itemsPerPage
+  // const indexOfLastItem = currentPage * itemsPerPage
+  // const indexOfFirstItem = indexOfLastItem - itemsPerPage
 
-  const currentItems = filteredItems.slice(indexOfFirstItem, indexOfLastItem)
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page)
-  }
+  // const currentItems = filteredItems.slice(indexOfFirstItem, indexOfLastItem)
+  // const handlePageChange = (page: number) => {
+  //   setCurrentPage(page)
+  // }
   const url = '/mock/e-commerce/products.json'
   const selectedId = useSelector((state: RootState) => state.categories.selectedCategoryId)
 
@@ -108,7 +109,7 @@ export default function Products() {
                   </button>
                 </a>
               ))}
-            {Array.from({ length: totalPages }, (_, index) => {
+            {/* {Array.from({ length: totalPages }, (_, index) => {
               return (
                 <button
                   key={index + 1}
@@ -121,7 +122,7 @@ export default function Products() {
                   {index + 1}
                 </button>
               )
-            })}
+            })} */}
           </div>
         </div>
       </div>
