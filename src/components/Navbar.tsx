@@ -1,8 +1,11 @@
 import React from 'react'
-
+import { useSelector } from 'react-redux'
+import { RootState } from '../redux/store'
 import { Navbar, MobileNav, Typography, IconButton } from '@material-tailwind/react'
 import { Link } from 'react-router-dom'
+import { Cart } from './Cart'
 export default function StickyNavbar() {
+  const user = useSelector((state: RootState) => state.users.user)
   const [openNav, setOpenNav] = React.useState(false)
 
   React.useEffect(() => {
@@ -33,13 +36,14 @@ export default function StickyNavbar() {
     <div className="-m-6 max-h-[768px] w-[calc(100%+48px)] overflow-hidden">
       <Navbar className="sticky top-0 z-10 h-max max-w-full rounded-none px-4 py-2 lg:px-8 lg:py-4">
         <div className="flex items-center justify-between text-blue-gray-900">
+          <h2>{user?.email ? `Welcome, ${user.email}!` : 'Welcome'}</h2>
           <Typography as="a" variant="small" color="blue-gray" className="p-1 font-meduim">
             Arco
           </Typography>
           <div className="flex items-center gap-4">
             <div className="mr-4 hidden lg:block">{navList}</div>
             <div className="flex items-center gap-x-1">
-              <Link to={`LogIn/`}>
+              <Link to={`/LogIn`}>
                 <button
                   // onClick={() => dispatch(setProduct(product))}
                   className="mt-1 text-lg font-medium text-white-900">
@@ -48,7 +52,16 @@ export default function StickyNavbar() {
               </Link>
             </div>
             <div className="flex items-center gap-x-1">
-              <Link to={`Cart/`}>
+              <Link to={`/Register`}>
+                <button
+                  // onClick={() => dispatch(setProduct(product))}
+                  className="mt-1 text-lg font-medium text-white-900">
+                  Register
+                </button>
+              </Link>
+            </div>
+            <div className="flex items-center gap-x-1">
+              <Link to={`/Cart`}>
                 <button className="mt-1 text-lg font-medium text-white-900">Cart</button>
               </Link>
             </div>

@@ -1,143 +1,136 @@
-// import { PayloadAction, createSlice } from '@reduxjs/toolkit'
-
-// export type Product = {
-//   id: number
-//   name: string
-//   image: string
-//   description: string
-//   Price: number
-//   categories: number[]
-//   // variants: string[]
-//   // sizes: string[]
-// }
-
-// export type ProductState = {
-//   items: Product[]
-//   error: null | string
-//   isLoading: boolean
-//   cart: Product[]
-
-//   // selectedProduct: Product
-// }
-
-// const initialState: ProductState = {
-//   items: [],
-//   error: null,
-//   isLoading: false,
-//   cart: []
-//   // selectedProduct: {} as Product
-// }
-
-// export const userSlice = createSlice({
-//   name: 'user',
-//   initialState,
-//   reducers: {
-//     productsRequest: (state) => {
-//       state.isLoading = true
-//     },
-//     productsSuccess: (state, action) => {
-//       state.isLoading = false
-//       state.items = action.payload
-//     },
-//     addProduct: (state, action: { payload: { product: Product } }) => {
-//       // let's append the new product to the beginning of the array
-//       state.items = [action.payload.product, ...state.items]
-//     },
-//     removeProduct: (state, action: { payload: { productId: number } }) => {
-//       const filteredItems = state.items.filter((product) => product.id !== action.payload.productId)
-//       state.items = filteredItems
-//     },
-//     addToCart: (state, action: PayloadAction<Product>) => {
-//       state.cart = [...state.cart, action.payload]
-//       console.log(state.cart)
-//     },
-//     getError: (state, action: PayloadAction<string>) => {
-//       state.error = action.payload
-//     }
-
-//     // setProduct: (state, action) => {
-//     //   state.selectedProduct = action.payload
-//     //   console.log(action.payload)
-//     // }
-//   }
-// })
-// export const { removeProduct, addProduct, productsRequest, productsSuccess, addToCart, getError } =
-//   userSlice.actions
-
-// export default userSlice.reducer
-import { createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import api from '../../../api'
 
 export type Product = {
-  id: number
-  name: string
-  image: string
-  description: string
-  categories: number[]
-  Price: number
-  //   variants: string[]
-  //   sizes: string[]
+  _id: string
+  productName: string
+  productImage: string
+  productDescription: string
+  category: number[]
+  productPrice: number
 }
 
 export type ProductState = {
   items: Product[]
+  product: Product | null
   error: null | string
   isLoading: boolean
 }
 
 const initialState: ProductState = {
   items: [],
+  product: null,
   error: null,
   isLoading: false
 }
 
-export const userSlice = createSlice({
-  name: 'user',
-  initialState,
-  reducers: {
-    updateProduct: (state, action) => {
-      const updatedProduct = action.payload
+// type Withot = Product
+// type With = Partial<Product>
 
-      const products = state.items.map((product) => {
-        if (product.id === updatedProduct.id) {
-          return updatedProduct
+export const createProductThunk = createAsyncThunk(
+  'products/createProduct',
+  async (product: Product) => {
+    try {
+      console.log(product)
+      const res = await api.post(`/api/products/`, product)
+      return res.data.payload
+    } catch (error) {
+      console.log('👀 ', error)
+    }
+  }
+)
+
+export const getProductsThunk = createAsyncThunk('products/get', async () => {
+  try {
+    const res = await api.get('/api/products')
+    console.log('res', res)
+    return res.data.payload
+  } catch (error) {
+    console.log('👀 ', error)
+  }
+})
+
+export const getProductByIdThunk = createAsyncThunk(
+  'products/getById',
+  async (productId: string | undefined) => {
+    try {
+      const res = await api.get(`api/products/${productId}`)
+      console.log('res', res)
+      return res.data.payload
+    } catch (error) {
+      console.log('👀 ', error)
+    }
+  }
+)
+
+export const updateProductThunk = createAsyncThunk(
+  'products/update',
+  async ({
+    productId,
+    updatedProduct
+  }: {
+    productId: Product['_id']
+    updatedProduct: Partial<Product>
+  }) => {
+    try {
+      const res = await api.put(`api/products/${productId}`, {
+        product: updatedProduct
+      })
+
+      console.log('updated product:', res.data.product)
+      return res.data.product
+    } catch (error) {
+      console.log('👀 ', error)
+    }
+  }
+)
+
+export const deleteProductThunk = createAsyncThunk('products/delete', async (productId: string) => {
+  try {
+    const res = await api.delete(`/api/products/${productId}`)
+    return res.data
+  } catch (error) {
+    console.log('👀 ', error)
+  }
+})
+
+export const productSlice = createSlice({
+  name: 'products',
+  initialState,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder.addCase(getProductsThunk.fulfilled, (state, action) => {
+      state.items = action.payload
+      return state
+    })
+    builder.addCase(getProductByIdThunk.fulfilled, (state, action) => {
+      state.product = action.payload
+      return state
+    })
+
+    builder.addCase(updateProductThunk.fulfilled, (state, action) => {
+      const updated = action.payload
+      console.log('updatedProduct:', updated)
+      const updatedProducts = state.items.map((product) => {
+        if (product._id === updated._id) {
+          return updated
         }
         return product
       })
-      state.items = products
-      console.log('products:', products)
-      return state
-    },
-    productsRequest: (state) => {
-      state.isLoading = true
-    },
-    productsSuccess: (state, action) => {
-      state.isLoading = false
-      state.items = action.payload
-    },
-    addProduct: (state, action: { payload: { product: Product } }) => {
-      // let's append the new product to the beginning of the array
-      state.items = [action.payload.product, ...state.items]
-    },
-    editProduct: (state, action: { payload: { editedProduct: Product } }) => {
-      const editedProduct = action.payload.editedProduct
 
-      state.items = state.items.map((product) =>
-        product.id === editedProduct.id ? editedProduct : product
-      )
-    },
-    removeProduct: (state, action: { payload: { productId: number } }) => {
-      const filteredItems = state.items.filter((product) => product.id !== action.payload.productId)
-      state.items = filteredItems
-    }
+      state.items = updatedProducts
+      return state
+    })
+
+    builder.addCase(createProductThunk.fulfilled, (state, action) => {
+      state.items = [...state.items, action.payload]
+      return state
+    })
+    builder.addCase(deleteProductThunk.fulfilled, (state, action) => {
+      state.items = state.items.filter((item) => item._id !== action.payload.payload._id)
+      return state
+    })
   }
 })
-export const {
-  removeProduct,
-  addProduct,
-  productsRequest,
-  productsSuccess,
-  updateProduct,
-  editProduct
-} = userSlice.actions
 
-export default userSlice.reducer
+export default productSlice.reducer

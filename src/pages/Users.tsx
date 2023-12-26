@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 
-import { removeUser, userRequest, userSuccess } from '../redux/slices/UserSlice'
+import { removeUser, userRequest, userSuccess } from '../redux/slices/users/userSlice'
 import { RootState } from '../redux/store'
 
 import api from '../api'
