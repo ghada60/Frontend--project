@@ -1,7 +1,6 @@
 import { useDispatch } from 'react-redux'
 import {
   Product,
-  createProductThunk,
   deleteProductThunk,
   updateProductThunk
 } from '../redux/slices/products/productSlice'
@@ -17,7 +16,7 @@ export function ProductsTable({ products }: { products: Product[] }) {
 
   const handleCreateProduct = (productId: string) => {
     console.log('id:', productId)
-    dispatch(createProductThunk(productId))
+    dispatch(ProductThunk(productId))
   }
 
   const handleUpdateProduct = (productId: Product['_id']) => {
@@ -72,3 +71,7 @@ export function ProductsTable({ products }: { products: Product[] }) {
     </div>
   )
 }
+function ProductThunk(productId: string): any {
+  throw new Error('Function not implemented.')
+}
+
