@@ -74,4 +74,3 @@ export function ProductsTable({ products }: { products: Product[] }) {
 function ProductThunk(productId: string): any {
   throw new Error('Function not implemented.')
 }
-
