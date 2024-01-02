@@ -1,14 +1,3 @@
-// import axios from 'axios'
-
-// const isDevelopment = import.meta.env.MODE === 'development'
-// const baseURL = import.meta.env.VITE_BACKEND_ORIGIN
-
-// const api = axios.create({
-//   baseURL
-// })
-
-// export default api
-
 import axios from 'axios'
 import { getTokenFromStorage } from '../utils/token'
 
